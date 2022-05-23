@@ -1,0 +1,46 @@
+@model MvcProject.Models.ShortUrls.DeleteShortUrl
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Deleting Short URL</h2>
+
+<div class="container p-3 my-3 border" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background: lightgrey;
+  border-radius: 5px;">
+    <h3>Would you like to continue?</h3>
+    <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.OriginalUrl):
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.OriginalUrl)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ShortendUrl):
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ShortendUrl)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.CreatedDate):
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UsedCount):
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UsedCount)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" asp-route-shortUrlId ="@Model.Id">
+            <input type="hidden" asp-for="Id" />
+            <input class="btn btn-primary" type="submit" value="Yes" />
+            <a class="btn btn-danger" asp-action="Dashboard">No</a>
+        </form>
+ </div>

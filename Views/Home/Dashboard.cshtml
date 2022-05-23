@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MvcProject.Models.ShortUrls.DeleteShortUrl>
+@{
+    ViewData["Title"] = "My created URLs";
+}
+<div style="justify-content:flex-end; margin-bottom: 25px; display: flex;">
+    <a class="btn btn-primary" asp-action="Create">Create short URL</a>
+</div>
+<div class="text-center">
+    <h1 style="margin-bottom: 25px;">@ViewData["Title"]</h1>
+
+        <div class="text-center">
+            <table cellpadding="3" cellspacing="3" class="table">
+                <thead colspan="2" align="center">
+                    <tr>
+                        <td>@Html.DisplayNameFor(modelItem => modelItem.OriginalUrl)</td>
+                        <td>@Html.DisplayNameFor(modelItem => modelItem.ShortendUrl)</td>
+                        <td>@Html.DisplayNameFor(modelItem => modelItem.UsedCount)</td>
+                        <td>@Html.DisplayNameFor(modelItem => modelItem.CreatedDate)</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+            @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="5">You don't have any short URL to show</td>
+                    </tr>
+                }           
+            else
+                {
+                    @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div style="word-break: break-all; max-width: 400px;">@Html.DisplayFor(modelItem => item.OriginalUrl)</div>      
+                                </td>
+                                <td>
+                                    <a href="@item.ShortendUrl">@Html.DisplayFor(modelItem => item.ShortendUrl)</a>
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.UsedCount)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
+                                <td><a asp-controller="Home" asp-action="Delete" class="btn btn-outline-danger" asp-route-shortUrlId ="@item.Id">Delete</a></td>
+                            </tr>
+                        }
+                }
+                </tbody>
+            </table>
+        </div>
+</div>
